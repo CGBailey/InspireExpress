@@ -14,7 +14,7 @@ var options = {
 
 function imageSearch() {
   return new Promise(function(resolve, reject){
-    request.get('http://api.pixplorer.co.uk/image', function(reqGet, response, next) {
+    request.get('http://api.pixplorer.co.uk/image?size=large', function(reqGet, response, next) {
       var image = JSON.parse(response.body);
       resolve(image);
     })
@@ -34,14 +34,6 @@ function quoteSearch() {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  // request.get('http://api.pixplorer.co.uk/image', function(reqGet, response, next) {
-  //   var image = JSON.parse(response.body);
-  //   console.log(image.images[0].imageurl);
-  // })
-  // request.get(options, function(reqGet, response, next) {
-  //   var quote = JSON.parse(response.body);
-  //   console.log(quote["quote"]);
-  // })
 
   imageSearch()
   .then(function(image){
@@ -55,5 +47,6 @@ router.get('/', function(req, res, next) {
   })
 
 });
+
 
 module.exports = router;
